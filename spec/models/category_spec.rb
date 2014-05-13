@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe Category do
 
+  it { should have_many(:categorisations) }
+  it { should have_many(:recipes).through(:categorisations)}
+
   describe "sub categories" do
     before do
       @vege = DietaryRequirement.create(:name => 'Vegeterian')
