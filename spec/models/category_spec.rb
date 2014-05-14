@@ -17,6 +17,8 @@ describe Category do
       expect(Cuisine.first).to eq(@french)
       expect(DietaryRequirement.first).to eq(@vege)
     end
+
+
   end
 
 end
