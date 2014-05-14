@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #RSPEC TEST
 
 require 'spec_helper'
@@ -25,4 +26,16 @@ describe "RecipesController" do
 
   # end
 
+=======
+require 'spec_helper'
+
+describe "RecipesController" do
+  before do
+    get "/"
+  end
+
+  it "returns hello world" do
+    last_response.body.should == "Hello World"
+  end
+>>>>>>> categorisations
 end

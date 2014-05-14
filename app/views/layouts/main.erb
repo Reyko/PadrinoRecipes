@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Recipe Book App</title>
+</head>
+<body>
+
+  <h1>My Amazing Recipe Book App</h1>
+
+  <nav>
+
+    <h3>Recipes By Category</h3>
+
+    <ul>
+      <% @categories.each do |category| %>
+        <li><%= link_to "#{category.name} Recipes", url_for(:recipes,
+        :by_category, :category_id => category.id) %></li>
+      <% end %>
+    </ul>
+  </nav>
+
+  <%= yield %>
+
+
+
+</body>
+</html>

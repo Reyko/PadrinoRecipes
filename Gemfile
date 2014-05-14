@@ -27,6 +27,7 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_girl'
   gem 'shoulda-matchers'
+  gem 'launchy'
 end
 
 gem 'pry-byebug'

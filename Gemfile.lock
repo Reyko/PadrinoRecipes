@@ -14,6 +14,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     arel (5.0.1.20140414130214)
     builder (3.2.2)
     byebug (2.7.0)
@@ -46,6 +47,8 @@ GEM
       url_mount (~> 0.2.1)
     i18n (0.6.9)
     json (1.8.1)
+    launchy (2.4.2)
+      addressable (~> 2.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -145,6 +148,7 @@ DEPENDENCIES
   database_cleaner
   erubis (~> 2.7.0)
   factory_girl
+  launchy
   padrino (= 0.12.1)
   pry-byebug
   rack-test
