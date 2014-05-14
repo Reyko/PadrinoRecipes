@@ -18,6 +18,7 @@ gem 'erubis', '~> 2.7.0'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
 gem 'sqlite3'
 
+
 # Test requirements
 group :test do
   gem 'rspec'
@@ -28,6 +29,7 @@ group :test do
   gem 'factory_girl'
   gem 'shoulda-matchers'
   gem 'launchy'
+  gem 'faker'
 end
 
 gem 'pry-byebug'

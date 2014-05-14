@@ -4,7 +4,8 @@ class AddFieldsToRecipes < ActiveRecord::Migration
     t.string :title
     t.text :description
     t.string :image_url
-    t.text preparationtime:instructions
+    t.text :preparationtime
+    t.text :instructions
     t.integer :cooking_time
     t.integer :servers
     end

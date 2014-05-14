@@ -3,6 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/boot")
 
 require 'shoulda/matchers'
 require_relative 'factories'
+require 'faker'
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
