@@ -37,6 +37,16 @@
     <%= f.text_field :serves %>
   <% end %>
 
+  <!-- Fields for each ingredient -->
+  <% f.fields_for :ingredient_recipes do |ingredient_fields| %>
+    <% ingredient_fields.fields_for :ingredient do |nested_ingredient_fields| %>
+      <h3> Ingredient </h3>
+      <% field_set_tag do %>
+        <%= ingredient_fields.label :qty %>
+        <%= ingredient_fields.text_field :qty %>
+      <% end %>
+    <% end %>
+  <% end %>
   <%= f.submit "Create Recipe" %>
 
 <% end %>

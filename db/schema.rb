@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 8) do
+ActiveRecord::Schema.define(version: 11) do
 
   create_table "categories", force: true do |t|
     t.string   "type"
@@ -51,7 +51,8 @@ ActiveRecord::Schema.define(version: 8) do
     t.string   "image_url"
     t.text     "instructions"
     t.integer  "cooking_time"
-    t.integer  "servers"
+    t.integer  "preparation_time"
+    t.integer  "serves"
   end
 
 end

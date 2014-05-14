@@ -1,15 +1,12 @@
 PadrinoRecipies::App.controllers :recipes do
   
   before do 
-
     @categories=Category.all
-
-
   end
-
 
   get :new do
     @recipe = Recipe.new
+    3.times { @recipe.ingredient_recipes.build(:ingredient => Ingredient.new) }
     render :'recipes/new'
   end
 
@@ -24,7 +21,7 @@ PadrinoRecipies::App.controllers :recipes do
     @recipe.save!
 
     flash[:notice]
-
+    redirect 'recipes/new'
   end
 
 end
