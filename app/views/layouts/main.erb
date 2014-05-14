@@ -17,6 +17,8 @@
         :by_category, :category_id => category.id) %></li>
       <% end %>
     </ul>
+
+    <%= link_to "Add a recipe", url_for(:recipes,:new) %>ß
   </nav>
 
   <%= yield %>

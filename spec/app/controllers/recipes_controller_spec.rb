@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #RSPEC TEST
 
 require 'spec_helper'
@@ -21,12 +20,19 @@ describe "RecipesController" do
     end
   end
 
-  # describe "POST to :create do"
-  
+describe "POST to :create do"
+  before do
+    post '/recipes/create', { :recipe => { :title => "Chocolate Cake"}}
+  end
 
-  # end
+  it "should save the recipe and redirect me" do
+    expect(Recipe.count).to eq(1)
+    expect(last_response).redirect?).to be be_true
+    follow_redirect!
+    expect(last_request.url).to be("/")
+  end
+end
 
-=======
 require 'spec_helper'
 
 describe "RecipesController" do
@@ -37,5 +43,4 @@ describe "RecipesController" do
   it "returns hello world" do
     last_response.body.should == "Hello World"
   end
->>>>>>> categorisations
 end

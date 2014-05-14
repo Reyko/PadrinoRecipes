@@ -1,19 +1,14 @@
-Given(/^there is recipe categorised as "(.*?)"$/) do |name|
- # name = "Vegeterian"
- @recipe = Recipe.new
- @recipe.categories << Category.new(:name => name)
- @recipe.save!
-end
-
-Given(/^I am on the homepage$/) do
-  visit('/')
+Given(/^there is a recipe categorised as "(.*?)"$/) do |name|
+  @recipe = Recipe.new
+  @recipe.categories << Category.new(:name => name)
+  @recipe.save!
 end
 
 When(/^I select "(.*?)" from the category list$/) do |name|
-  save_and_open_page
   click_link name
 end
 
 Then(/^I will see a list of vegetarian recipes$/) do
-  pending
+  expect(page.has_content?("Vegetarian")).to be_true
+  expect(all('article.recipe').length).to eq(1)
 end
