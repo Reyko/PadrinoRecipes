@@ -1,7 +1,14 @@
 PadrinoRecipies::App.controllers :recipes do
   
-  before do 
-    @categories=Category.all
+  get :index do
+    @recipes = Recipe.all
+    render :'recipes/index'
+  end
+
+  get :index, :parent => :chef do
+
+    @recipes = Chef.find(params[:chef_id]).recipes
+    render :'recipes/index'
   end
 
   get :new do
@@ -13,13 +20,12 @@ PadrinoRecipies::App.controllers :recipes do
   get :by_category, :with => :category_id do
     @category = Category.find(params[:category_id])
     @recipes = @category.recipes
-    render 'recipes/by_category'
+    render :'recipes/by_category'
   end
   
-  post :create do
+  post :create, :map => "/recipes" do
     @recipe = Recipe.new(params[:recipe])
     @recipe.save!
-
     flash[:notice]
     redirect 'recipes/new'
   end

@@ -54,7 +54,7 @@ describe "RecipesController" do
         }
       }
 
-      post '/recipes/create', params
+      post '/recipes', params
     end
 
     it "should create the Recipe, IngredientRecipe and Ingredient in one hit" do
@@ -74,6 +74,34 @@ describe "RecipesController" do
       expect(last_response.redirect?).to be_true
     end
 
+  end
+
+  describe "nested routes" do
+    before do
+      @chef = Chef.create!(:first_name => "Gordon", :last_name => "Ramsay", 
+        :image_url => "http://static.guim.co.uk/sys-images/Media/Pix/pictures/2010/11/29/1291057574667/Gordon-Ramsay-007.jpg", 
+        :biography => "OBE (born 8 November 1966) is a Scottish celebrity chef, 
+        restaurateur, and television personality.")
+
+      @chef.recipes.create!(:title => "Gin Soup")
+
+      Recipe.create!(:title => "Some other recipe")
+    end
+
+    describe "GET to chef/:chef_id/recipes" do
+      before do
+        get "/chef/#{@chef.id}/recipes"
+      end
+
+      it "should give us status 200" do
+        expect(last_response.ok?).to be_true
+      end
+
+      it "should only display Gin Soup" do
+        expect(last_response.body).to match(/Gin Soup/)
+        expect(last_response.body).not_to match(/Some other recipe/)
+      end
+    end
   end
 
 end

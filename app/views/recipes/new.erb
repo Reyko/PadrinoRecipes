@@ -49,5 +49,40 @@
   <% end %>
   
   <%= f.submit "Create Recipe" %>
-
+  <button type = "button" onclick = "newIngredient()" >Add More</button>
 <% end %>
+
+<script type = "text/javascript">
+  function newIngredient(){
+    var idTemp = document.getElementById("recipe_ingredient_recipes_attributes_1_qty").getAttribute('id');
+    var num = 0;
+
+    for(var i=0; i < idTemp.length; i++) {
+
+        if(idTemp[i] == "1") {
+
+            num += 1;
+
+        }
+
+    }
+
+    alert(num.toString());
+    var id = document.getElementById("recipe_ingredient_recipes_attributes_1_qty");
+
+    var fieldset = document.createElement("fieldset");
+    fieldset.appendChild(id);
+
+    // var label = document.createElement("label");
+    // label.htmlFor = id;
+    // var input = document.createElement("input");
+    // input.n
+
+
+    // alert(id);
+
+    document.body.appendChild(fieldset); 
+
+  }
+</script>
+
