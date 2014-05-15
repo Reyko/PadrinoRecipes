@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Recipe do
+  it { should belong_to(:chef) }
   it { should have_many(:categorisations)}
   it { should have_many(:categories).through(:categorisations)}
   it { should have_many(:ingredient_recipes) }
