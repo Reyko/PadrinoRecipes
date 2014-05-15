@@ -27,6 +27,21 @@
     <%= link_to "Add a recipe", url_for(:recipes, :new) %>
   </nav>
 
+ <nav>
+<ul>
+
+<% Chef.all.each do |chef| %>
+
+  <li>
+     <%= link_to "chefs #{chef.first_name} #{chef.last_name}", url_for(:chefs,:index) %>
+ </li>
+<% end %>
+
+
+</ul>
+
+ </nav>
+
   <%= yield %>
 
 </body>

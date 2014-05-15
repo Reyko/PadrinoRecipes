@@ -1,6 +1,6 @@
 Feature: Add A Recipe
 
-  @wip
+
   Scenario: A visitor adds a recipe without providing a title
     Given that we are on the homepage
       And we choose to add a recipe

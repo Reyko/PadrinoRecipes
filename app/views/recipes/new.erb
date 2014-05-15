@@ -37,6 +37,7 @@
     <%= f.text_field :serves %>
   <% end %>
 
+
   <!-- Fields for each ingredient -->
   <% f.fields_for :ingredient_recipes do |ingredient_fields| %>
     <% ingredient_fields.fields_for :ingredient do |nested_ingredient_fields| %>
@@ -45,44 +46,44 @@
         <%= ingredient_fields.label :qty %>
         <%= ingredient_fields.text_field :qty %>
       <% end %>
+      
+      <div id = "more"></div>
     <% end %>
   <% end %>
-  
+
   <%= f.submit "Create Recipe" %>
   <button type = "button" onclick = "newIngredient()" >Add More</button>
 <% end %>
 
 <script type = "text/javascript">
+  var num = 0;
   function newIngredient(){
-    var idTemp = document.getElementById("recipe_ingredient_recipes_attributes_1_qty").getAttribute('id');
-    var num = 0;
 
-    for(var i=0; i < idTemp.length; i++) {
+    var more = document.getElementById("more");
+    num+=1;
 
-        if(idTemp[i] == "1") {
 
-            num += 1;
+    var title = document.createElement("h3");
+    title.innerHTML = "Ingredient";
 
-        }
+    var label = document.createElement("label");
+    label.setAttribute("for","recipe_ingredient_recipes_attributes_"+ num +"_qty");
+    label.setAttribute("id","recipe_ingredient_recipes_attributes_"+num+"_qty");
+    label.innerHTML ="Qty: ";
 
-    }
 
-    alert(num.toString());
-    var id = document.getElementById("recipe_ingredient_recipes_attributes_1_qty");
+    var input = document.createElement("input");
+    input.setAttribute("name","recipe[ingredient_recipes_attributes]"+"["+num+"]"+"[qty]");
+    input.setAttribute("id","recipe_ingredient_recipes_attributes_"+num+"_qty");
+    input.setAttribute("type","text");
 
     var fieldset = document.createElement("fieldset");
-    fieldset.appendChild(id);
 
-    // var label = document.createElement("label");
-    // label.htmlFor = id;
-    // var input = document.createElement("input");
-    // input.n
-
-
-    // alert(id);
-
-    document.body.appendChild(fieldset); 
-
+  
+    fieldset.appendChild(label);
+    fieldset.appendChild(input);
+    more.appendChild(title);
+    more.appendChild(fieldset);
   }
 </script>
 

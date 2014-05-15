@@ -5,4 +5,6 @@ PadrinoRecipies::App.controllers :pages do
     render 'pages/homepage'
   end
 
+
+
 end
