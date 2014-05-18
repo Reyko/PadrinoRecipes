@@ -1,9 +1,6 @@
-<h3>Recipes</h3>
-
-<% @recipes.each do |recipe| %>
-  <div class= "recipe">
-    <a href ="#"><%=recipe.title%></a>
-
-   </div>
-
- <% end %> 
+<!-- <h3>Recipes</h3> -->
+<ul class = "recipe">
+  <% @recipes.each do |recipe| %>
+     <li class = "recipe-img"><%= link_to image_tag(recipe.image_url), url_for(:recipes,:show,:id => recipe.id)%></li>
+  <% end %> 
+</ul>

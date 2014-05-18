@@ -1,48 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <%= stylesheet_link_tag 'reset' %>
+  <%= stylesheet_link_tag 'style' %>
+  <link href='http://fonts.googleapis.com/css?family=Neuton:400,700,400italic' rel='stylesheet' type='text/css'>
   <title>My Recipe Book App</title>
 </head>
 <body>
-  <h1>My Amazing Recipe Book App</h1>
-
+<header>  
+  <h1>Recipes <span id="book">Book</span></h1>
+  <nav id ="main-nav">
+    <ul>
+      <li><%= link_to "Home", url_for(:pages,:home) %> </li>
+      <li><%= link_to "Recipes", url_for(:recipes,:index) %></li> 
+      <li><%= link_to "Add a recipe", url_for(:recipes, :new) %></li>
+    </ul>
+  </nav>
+</header>
   <% if flash[:notice] %>
     <div class="flash">
       <%= flash[:notice] %>
     </div>
   <% end %>
 
-  <nav>
-    <h3>Recipes By Category</h3>
+ <div id = "wrapper">
+  <h3><%= @title %></h3> 
+   <div id = "left-column">
+      <nav id = "cat-nav">
+        <h4>Recipes By Category</h4>
+        <ul>
+          <% Category.all.each do |category| %>
+            <li>
+              <%= link_to "#{category.name} Recipes", url_for(:recipes, :by_category, :category_id => category.id) %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
 
-    <ul>
-      <% Category.all.each do |category| %>
-  
-        <li>
-          <%= link_to "#{category.name} Recipes", url_for(:recipes, :by_category, :category_id => category.id) %>
-        </li>
-      <% end %>
-    </ul>
+     <nav id = "chefs-nav">
+      <h4>Recipes By Chef</h4>
+        <ul>
+        <% Chef.all.each do |chef| %>
+          <li>
+             <%= link_to "#{chef.first_name} #{chef.last_name}", url_for(:recipes,:by_chef,:chef_id => chef.id) %>
+         </li>
+        <% end %>
+        </ul>
+     </nav>
+  </div>
 
-    <%= link_to "Add a recipe", url_for(:recipes, :new) %>
-  </nav>
-
- <nav>
-<ul>
-
-<% Chef.all.each do |chef| %>
-
-  <li>
-     <%= link_to "chefs #{chef.first_name} #{chef.last_name}", url_for(:chefs,:index) %>
- </li>
-<% end %>
-
-
-</ul>
-
- </nav>
-
-  <%= yield %>
-
+  <div id = "content">
+    <%= yield %>
+  </div>
+  <div id = "clear">
+  </div>
+</div>
 </body>
 </html>
