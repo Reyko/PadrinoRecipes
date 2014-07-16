@@ -12,7 +12,15 @@ PadrinoRecipies::App.controllers :recipes do
   end
 
   get :new do
+
     @recipe = Recipe.new
+    @chefs = Chef.all
+    @chef = @chefs.map { |chef| 
+
+      ["#{chef[:first_name]} #{chef[:last_name]}",chef[:id]]
+
+    }
+
     @recipe.ingredient_recipes.build(:ingredient => Ingredient.new) 
     render :'recipes/new'
   end
@@ -21,6 +29,7 @@ PadrinoRecipies::App.controllers :recipes do
     @recipe = Recipe.find(params[:id])
     @title = @recipe.title
     @ingredients = @recipe.ingredients
+
     @instructions = @recipe.instructions.split(".")
     render :'recipes/show'
   end
@@ -42,8 +51,12 @@ PadrinoRecipies::App.controllers :recipes do
   end
   
   post :create, :map => "/recipes" do
+
+    binding.pry
     @recipe = Recipe.new(params[:recipe])
+    binding.pry
     @recipe.save!
+    binding.pry
     flash[:notice]
     redirect 'recipes/new'
   end

@@ -6,6 +6,7 @@ module PadrinoRecipies
 
     enable :sessions
 
+    @categories = Category.all
     ##
     # Caching support.
     #

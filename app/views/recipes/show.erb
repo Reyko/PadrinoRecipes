@@ -13,7 +13,7 @@
   <ul class = "ingredients">
     <h4>Ingredients</h4>
     <% @ingredients.each do |ingredient| %>
-      <li><%=ingredient.name%></li>
+      <li><%=get_qty(ingredient)%> <%=ingredient.name%></li>
     <%end%>  
 
 

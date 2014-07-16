@@ -1,15 +1,10 @@
 <h3>Add A Recipe</h3>
 
-<% form_for @recipe, url_for(:recipes, :create) do |f| %>
+<% form_for @recipe , url_for(:recipes, :create),:class => "smart-green" do |f| %>
 
   <% field_set_tag do %>
     <%= f.label :title %>
     <%= f.text_field :title %>
-  <% end %>
-
-  <% field_set_tag do %>
-    <%= f.label :description %>
-    <%= f.text_field :description %>
   <% end %>
 
   <% field_set_tag do %>
@@ -18,8 +13,18 @@
   <% end %>
 
   <% field_set_tag do %>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  <% end %>
+
+  <% field_set_tag do %>
     <%= f.label :instructions %>
-    <%= f.text_field :instructions %>
+    <%= f.text_area :instructions %>
+  <% end %>
+
+  <% field_set_tag do %>
+    <%= f.label :chef %>
+    <%= f.select :chef_id, :options => @chef%>
   <% end %>
 
   <% field_set_tag do %>
@@ -42,6 +47,13 @@
   <% f.fields_for :ingredient_recipes do |ingredient_fields| %>
     <% ingredient_fields.fields_for :ingredient do |nested_ingredient_fields| %>
       <h3> Ingredient </h3>
+      
+      <% field_set_tag do %>
+        <%= nested_ingredient_fields.label :name %>
+        <%= nested_ingredient_fields.text_field :name %>
+      <% end %>
+
+
       <% field_set_tag do %>
         <%= ingredient_fields.label :qty %>
         <%= ingredient_fields.text_field :qty %>
@@ -66,24 +78,45 @@
     var title = document.createElement("h3");
     title.innerHTML = "Ingredient";
 
-    var label = document.createElement("label");
-    label.setAttribute("for","recipe_ingredient_recipes_attributes_"+ num +"_qty");
-    label.setAttribute("id","recipe_ingredient_recipes_attributes_"+num+"_qty");
-    label.innerHTML ="Qty: ";
 
 
-    var input = document.createElement("input");
-    input.setAttribute("name","recipe[ingredient_recipes_attributes]"+"["+num+"]"+"[qty]");
-    input.setAttribute("id","recipe_ingredient_recipes_attributes_"+num+"_qty");
-    input.setAttribute("type","text");
+    var labelName = document.createElement("label");
+    labelName.setAttribute("for","recipe_ingredient_recipes_attributes_"+ num +"_ingredient_attributes_name");
+    labelName.setAttribute("id","recipe_ingredient_recipes_attributes_"+num+"_ingredient_attributes_name");
+    labelName.innerHTML ="Name: ";
 
-    var fieldset = document.createElement("fieldset");
+    var inputName = document.createElement("input");
+    inputName.setAttribute("name","recipe[ingredient_recipes_attributes]"+"["+num+"]"+"[ingredient_attributes][name]");
+    inputName.setAttribute("id","recipe_ingredient_recipes_attributes_"+num+"_ingredient_attributes_name");
+    inputName.setAttribute("type","text");
+
+    var fieldsetName = document.createElement("fieldset");
+
+    fieldsetName.appendChild(labelName);
+    fieldsetName.appendChild(inputName);
+
+
+
+
+    var labelQty = document.createElement("label");
+    labelQty.setAttribute("for","recipe_ingredient_recipes_attributes_"+ num +"_qty");
+    labelQty.setAttribute("id","recipe_ingredient_recipes_attributes_"+num+"_qty");
+    labelQty.innerHTML ="Qty: ";
+
+
+    var inputQty = document.createElement("input");
+    inputQty.setAttribute("name","recipe[ingredient_recipes_attributes]"+"["+num+"]"+"[qty]");
+    inputQty.setAttribute("id","recipe_ingredient_recipes_attributes_"+num+"_qty");
+    inputQty.setAttribute("type","text");
+
+    var fieldsetQty = document.createElement("fieldset");
 
   
-    fieldset.appendChild(label);
-    fieldset.appendChild(input);
+    fieldsetQty.appendChild(labelQty);
+    fieldsetQty.appendChild(inputQty);
     more.appendChild(title);
-    more.appendChild(fieldset);
+    more.appendChild(fieldsetName);
+    more.appendChild(fieldsetQty);
   }
 </script>
 
