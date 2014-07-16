@@ -52,11 +52,8 @@ PadrinoRecipies::App.controllers :recipes do
   
   post :create, :map => "/recipes" do
 
-    binding.pry
     @recipe = Recipe.new(params[:recipe])
-    binding.pry
     @recipe.save!
-    binding.pry
     flash[:notice]
     redirect 'recipes/new'
   end
